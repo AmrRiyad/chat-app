@@ -1,0 +1,37 @@
+services:
+  # Rails Service
+  web:
+    build: .
+    environment:
+      - RAILS_ENV=development
+      - RAILS_MASTER_KEY
+      - MYSQL_ROOT_PASSWORD=12082002
+    restart: always
+    ports:
+      - "3000:80"
+    volumes:
+      - ./:/rails
+      - /rails/tmp
+    depends_on:
+      db:
+        condition: service_healthy
+
+  # Database Service
+  db:
+    image: mysql:8.0
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=12082002
+      - MYSQL_DATABASE=chat_app
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p$$MYSQL_ROOT_PASSWORD"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  mysql_data:
