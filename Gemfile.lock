@@ -75,6 +75,9 @@ GEM
     addressable (2.8.7)
       public_suffix (>= 2.0.2, < 7.0)
     ast (2.4.3)
+    auto_increment (1.6.2)
+      activerecord (>= 6.0)
+      activesupport (>= 6.0)
     base64 (0.2.0)
     bcrypt_pbkdf (1.1.1)
     benchmark (0.4.0)
@@ -357,6 +360,7 @@ PLATFORMS
   x86_64-linux-gnu
 
 DEPENDENCIES
+  auto_increment
   bootsnap
   brakeman
   capybara
