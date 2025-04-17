@@ -24,11 +24,16 @@ class ChatsController < ApplicationController
   end
 
   def show
-    @chat = Chat.find_by(id: params[:id])
-    if @chat.nil?
-      render json: { error: "Chat not found" }, status: :not_found
+    @application = Application.find_by(token: params[:application_token])
+    if @application.nil?
+      render json: { error: "Application not found" }, status: :not_found
     else
-      render json: @chat
+      @chat = Chat.find_by(number: params[:number], application_id: @application.id)
+      if @chat.nil?
+        render json: { error: "Chat not found" }, status: :not_found
+      else
+        render json: @chat
+      end
     end
   end
 

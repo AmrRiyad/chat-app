@@ -13,6 +13,11 @@ class ApplicationsController < ApplicationController
     end
   end
 
+  def show
+    @application = Application.find_by(token: params[:token])
+    render json: @application
+  end
+
   private
 
   def application_params

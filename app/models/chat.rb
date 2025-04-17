@@ -7,6 +7,10 @@ class Chat < ApplicationRecord
   validates :name, presence: true, uniqueness: true
   validates :number, presence: true, numericality: { only_integer: true }
 
+  def as_json(options = {})
+    super(options.merge(except: [ :id, :application_id ]))
+  end
+
   private
 
   def assign_number

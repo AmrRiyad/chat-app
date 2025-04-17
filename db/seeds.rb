@@ -12,18 +12,45 @@ app1 = Application.find_or_create_by!(name: "Test Application 1")
 app2 = Application.find_or_create_by!(name: "Test Application 2")
 app3 = Application.find_or_create_by!(name: "Test Application 3")
 
-# Using globally unique numbers for each chat
-Chat.find_or_create_by!(application_id: app1.id, name: "Test Chat 10")
-Chat.find_or_create_by!(application_id: app1.id, name: "Test Chat 11")
-Chat.find_or_create_by!(application_id: app1.id, name: "Test Chat 12")
+chat1 = Chat.find_or_create_by!(application_id: app1.id, name: "Test Chat 10")
+chat2 = Chat.find_or_create_by!(application_id: app1.id, name: "Test Chat 11")
 
-Chat.find_or_create_by!(application_id: app2.id, name: "Test Chat 20")
-Chat.find_or_create_by!(application_id: app2.id, name: "Test Chat 21")
-Chat.find_or_create_by!(application_id: app2.id, name: "Test Chat 22")
-Chat.find_or_create_by!(application_id: app2.id, name: "Test Chat 23")
+chat3 = Chat.find_or_create_by!(application_id: app2.id, name: "Test Chat 20")
+chat4 = Chat.find_or_create_by!(application_id: app2.id, name: "Test Chat 21")
+chat5 = Chat.find_or_create_by!(application_id: app2.id, name: "Test Chat 22")
 
-Chat.find_or_create_by!(application_id: app3.id, name: "Test Chat 30")
-Chat.find_or_create_by!(application_id: app3.id, name: "Test Chat 31")
-Chat.find_or_create_by!(application_id: app3.id, name: "Test Chat 32")
-Chat.find_or_create_by!(application_id: app3.id, name: "Test Chat 33")
-Chat.find_or_create_by!(application_id: app3.id, name: "Test Chat 34")
+chat6 = Chat.find_or_create_by!(application_id: app3.id, name: "Test Chat 30")
+chat7 = Chat.find_or_create_by!(application_id: app3.id, name: "Test Chat 31")
+chat8 = Chat.find_or_create_by!(application_id: app3.id, name: "Test Chat 32")
+chat9 = Chat.find_or_create_by!(application_id: app3.id, name: "Test Chat 33")
+
+Message.find_or_create_by!(chat_id: chat1.id, content: "Hello, world 1")
+Message.find_or_create_by!(chat_id: chat1.id, content: "Hello, world 2")
+
+Message.find_or_create_by!(chat_id: chat2.id, content: "Hello, world 1")
+Message.find_or_create_by!(chat_id: chat2.id, content: "Hello, world 2")
+Message.find_or_create_by!(chat_id: chat2.id, content: "Hello, world 3")
+
+Message.find_or_create_by!(chat_id: chat3.id, content: "Hello, world 1")
+Message.find_or_create_by!(chat_id: chat3.id, content: "Hello, world 2")
+
+Message.find_or_create_by!(chat_id: chat4.id, content: "Hello, world 1")
+Message.find_or_create_by!(chat_id: chat4.id, content: "Hello, world 2")
+Message.find_or_create_by!(chat_id: chat4.id, content: "Hello, world 3")
+
+Message.find_or_create_by!(chat_id: chat5.id, content: "Hello, world 1")
+Message.find_or_create_by!(chat_id: chat5.id, content: "Hello, world 2")
+
+Message.find_or_create_by!(chat_id: chat6.id, content: "Hello, world 1")
+Message.find_or_create_by!(chat_id: chat6.id, content: "Hello, world 2")
+Message.find_or_create_by!(chat_id: chat6.id, content: "Hello, world 3")
+
+Message.find_or_create_by!(chat_id: chat7.id, content: "Hello, world 1")
+Message.find_or_create_by!(chat_id: chat7.id, content: "Hello, world 2")
+
+Message.find_or_create_by!(chat_id: chat8.id, content: "Hello, world 1")
+Message.find_or_create_by!(chat_id: chat8.id, content: "Hello, world 2")
+Message.find_or_create_by!(chat_id: chat8.id, content: "Hello, world 3")
+
+Message.find_or_create_by!(chat_id: chat9.id, content: "Hello, world 1")
+Message.find_or_create_by!(chat_id: chat9.id, content: "Hello, world 2")
