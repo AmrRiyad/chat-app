@@ -1,17 +1,25 @@
 class ChatsController < ApplicationController
   def index
     @application = Application.find_by(token: params[:application_token])
-    @chats = @application.chats
-    render json: @chats
+    if @application.nil?
+      render json: { error: "Application not found" }, status: :not_found
+    else
+      @chats = @application.chats
+      render json: @chats
+    end
   end
 
   def create
     @application = Application.find_by(token: params[:application_token])
-    @chat = @application.chats.new(chat_params)
-    if @chat.save
-      render json: @chat, status: :created
+    if @application.nil?
+      render json: { error: "Application not found" }, status: :not_found
     else
-      render json: @chat.errors, status: :unprocessable_entity
+      @chat = @application.chats.new(chat_params)
+      if @chat.save
+        render json: @chat, status: :created
+      else
+        render json: @chat.errors, status: :unprocessable_entity
+      end
     end
   end
 
