@@ -71,5 +71,4 @@ Rails.application.configure do
   # config.generators.apply_rubocop_autocorrect_after_generate!
 
   config.hosts << "www.example.com"
-
 end
