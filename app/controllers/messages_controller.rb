@@ -8,8 +8,19 @@ class MessagesController < ApplicationController
       if @chat.nil?
         render json: { error: "Chat not found" }, status: :not_found
       else
-        @messages = Message.where(chat_id: @chat.id)
-        render json: @messages
+        if params[:query].present?
+          messages = Message.search(params[:query], @chat.id)
+          formatted_messages = messages.map do |message|
+            {
+              matching_score: message._score,
+              content: message.content,
+              number: message.number
+            }
+          end
+          render json: formatted_messages
+        else
+          render json: Message.where(chat_id: @chat.id)
+        end
       end
     end
   end

@@ -12,8 +12,15 @@ services:
     volumes:
       - ./:/rails
       - /rails/tmp
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
     depends_on:
       db:
+        condition: service_healthy
+      elasticsearch:
         condition: service_healthy
 
   # Database Service
@@ -33,5 +40,27 @@ services:
       timeout: 5s
       retries: 5
 
+  # Elasticsearch Service
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.12.1
+    restart: always
+    ports:
+      - "9200:9200"
+    environment:
+      - "discovery.type=single-node"
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - xpack.security.enabled=false
+    volumes:
+      - elasticsearch_data:/usr/share/elasticsearch/data
+    depends_on:
+      db:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9200"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
 volumes:
   mysql_data:
+  elasticsearch_data:

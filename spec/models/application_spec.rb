@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Application, type: :model do
-  subject { FactoryBot.build(:application) }  # assuming you have a FactoryBot factory
+  subject { FactoryBot.build(:application) }
 
   describe "validations" do
     it "is valid with valid attributes" do

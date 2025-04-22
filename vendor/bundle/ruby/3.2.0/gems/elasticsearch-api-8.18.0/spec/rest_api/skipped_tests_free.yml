@@ -1,0 +1,245 @@
+# Response from Elasticsearch is just a String, so it's not possible to compare using headers.
+-
+  :file:        'cat.aliases/20_headers.yml'
+  :description: 'Simple alias with yaml body through Accept header'
+
+# Check version skip logic
+-
+  :file:        'create/15_without_id.yml'
+  :description: 'Create without ID'
+
+# Error message doesn't match
+-
+  :file:        'tasks.get/10_basic.yml'
+  :description: 'get task test'
+
+# Figure out how to match response when there is an error
+-
+  :file:        'cat.templates/10_basic.yml'
+  :description: '*'
+
+# https://github.com/elastic/elasticsearch-ruby/issues/1563
+-
+  :file:        'tsdb/80_index_resize.yml'
+  :description: 'shrink'
+-
+  :file:        'tsdb/80_index_resize.yml'
+  :description: 'clone'
+-
+  :file: 'cluster.desired_nodes/10_basic.yml'
+  :description: 'Test update desired nodes is idempotent'
+-
+  :file: 'cluster.desired_nodes/10_basic.yml'
+  :description: 'Test update desired nodes is idempotent with different order'
+-
+  :file: 'cluster.desired_nodes/10_basic.yml'
+  :description: 'Test node version must be at least the current master version'
+-
+  :file: 'cluster.desired_nodes/10_basic.yml'
+  :description: 'Test node version must have content'
+-
+  :file: 'search.vectors/40_knn_search.yml'
+  :description: 'Direct kNN queries are disallowed'
+-
+  :file: 'search.vectors/40_knn_search.yml'
+  :description: 'Knn search with mip'
+-
+  :file: 'search.vectors/45_knn_search_byte.yml'
+  :description: 'Direct kNN queries are disallowed'
+-
+  :file: 'tsdb/25_id_generation.yml'
+  :description: 'generates a consistent id'
+-
+  :file: 'indices.resolve_cluster/10_basic_resolve_cluster.yml'
+  :description: 'Resolve cluster using alias and index that does not exist'
+-
+  :file: 'health/10_basic.yml' # Migrated to written manually
+  :description: 'cluster health basic test'
+-
+  :file: 'cat.allocation/10_basic.yml'
+  :description: 'One index'
+-
+  :file: 'cat.allocation/10_basic.yml'
+  :description: 'Node ID'
+-
+  :file: 'cat.allocation/10_basic.yml'
+  :description: 'All Nodes'
+-
+  :file: 'cat.allocation/10_basic.yml'
+  :description: 'Column headers'
+-
+  :file: 'cat.allocation/10_basic.yml'
+  :description: 'Bytes'
+-
+  :file: 'search.vectors/120_knn_query_multiple_shards.yml'
+  :description: 'Search for 2 knn queries combines scores from them'
+-
+  :file: 'search.vectors/140_knn_query_with_other_queries.yml'
+  :description: 'Function score query with knn query'
+-
+  :file: 'search.vectors/60_knn_search_filter_alias.yml'
+  :description: 'kNN filter alias'
+-
+  :file: 'cluster.desired_nodes/11_old_format.yml'
+  :description: 'Test node version must be at least the current master version'
+-
+  :file: 'cluster.desired_nodes/11_old_format.yml'
+  :description: 'Test node version must have content'
+-
+  :file: 'aggregations/stats_metric_fail_formatting.yml'
+  :description: 'fail formatting'
+# TODO: Test failing due to implementation
+-
+  :file: 'capabilities/10_basic.yml'
+  :description: '*'
+-
+  :file: 'indices.simulate_index_template/10_basic.yml'
+  :description: 'Simulate index matches overlapping legacy and composable templates'
+-
+  :file: 'indices.simulate_template/10_basic.yml'
+  :description: 'Simulate template matches overlapping legacy and composable templates'
+-
+  :file: 'search.vectors/180_update_dense_vector_type.yml'
+  :description: 'Test create and update dense vector mapping with per-doc indexing and flush'
+-
+  :file: 'search.vectors/180_update_dense_vector_type.yml'
+  :description: 'Test create and update dense vector mapping with bulk indexing'
+-
+  :file: 'search.vectors/180_update_dense_vector_type.yml'
+  :description: 'Index, update and merge'
+-
+  :file: 'search.vectors/90_sparse_vector.yml'
+  :description: 'Indexing and searching multi-value sparse vectors in >=8.15'
+-
+  :file: 'search/330_disallow_scripted_metrics.yml'
+  :description: 'all scripts allowed by default'
+-
+  :file: 'search/330_disallow_scripted_metrics.yml'
+  :description: 'disallow all for empty allow lists'
+-
+  :file: 'search/330_disallow_scripted_metrics.yml'
+  :description: 'allowed stored scripts do not affect allowed inline scripts'
+-
+  :file: 'aggregations/scripted_metric_allow_list.yml'
+  :description: 'allowed stored scripts do not affect allowed inline scripts'
+-
+  :file: 'logsdb/10_settings.yml'
+  :description: '*'
+-
+  :file: 'search.vectors/180_update_dense_vector_type.yml'
+  :description: 'Test create and update dense vector mapping to int4 with per-doc indexing and flush'
+-
+  :file: 'simulate.ingest/10_basic.yml'
+  :description: 'Test mapping validation'
+-
+  :file: 'nodes.stats/11_indices_metrics.yml'
+  :description: 'Lucene segment level fields stats'
+-
+  :file: 'search.suggest/20_phrase.yml'
+  :description: 'breaks ties by sorting terms'
+# Regexp issues with catching an error
+-
+  :file: 'analysis-common/40_token_filters.yml'
+  :description: 'stemmer_override file access'
+- # Migrated to YAML tests:
+  :file: 'ingest_geoip/30_geoip_stats.yml'
+  :description: '*'
+- # Testing server:
+  :file: 'ingest_geoip/20_geoip_processor.yml'
+  :description: '*'
+-
+  :file: 'simulate.ingest/10_basic.yml'
+  :description: 'Test mapping validation from templates'
+-
+  :file: 'indices.split/40_routing_partition_size.yml'
+  :description: '*'
+-
+  :file: 'ingest_geoip/40_geoip_databases.yml'
+  :description: 'Test adding, getting, and removing geoip databases'
+-
+  :file: 'ingest_geoip/50_ip_lookup_processor.yml'
+  :description: '*'
+-
+  :file: 'ingest_geoip/60_ip_location_databases.yml'
+  :description: '*'
+-
+  :file: 'index/91_metrics_no_subobjects.yml'
+  :description: 'Metrics object indexing with synthetic source'
+-
+  :file: 'indices.create/20_synthetic_source.yml'
+  :description: '*'
+-
+  :file: 'indices.create/21_synthetic_source_stored.yml'
+  :description: '*'
+-
+  :file: 'indices.put_mapping/10_basic.yml'
+  :description: 'disabling synthetic source fails'
+-
+  :file: 'logsdb/20_source_mapping.yml'
+  :description: 'synthetic _source is default'
+-
+  :file: 'index/92_metrics_auto_subobjects.yml'
+  :description: 'Metrics object indexing with synthetic source'
+-
+  :file: 'tsdb/20_mapping.yml'
+  :description: 'Synthetic source'
+-
+  :file: 'search.highlight/50_synthetic_source.yml'
+  :description: 'text multi fvh source order'
+-
+  :file: 'search.highlight/50_synthetic_source.yml'
+  :description: 'text multi fvh score order'
+-
+  :file: 'update/100_synthetic_source.yml'
+  :description: 'stored text'
+-
+  :file: 'get/100_synthetic_source.yml'
+  :description: 'fetch without refresh also produces synthetic source'
+-
+  :file: 'update/100_synthetic_source.yml'
+  :description: 'stored text'
+-
+  :file: 'update/100_synthetic_source.yml'
+  :description: 'keyword'
+-
+  :file: 'update/100_synthetic_source.yml'
+  :description: 'fetch without refresh also produces synthetic source'
+-
+  :file: 'get/100_synthetic_source.yml'
+  :description: 'flattened field'
+-
+  :file: 'get/100_synthetic_source.yml'
+  :description: 'flattened field with ignore_above and arrays'
+-
+  :file: 'range/20_synthetic_source.yml'
+  :description: '*'
+-
+  :file: 'logsdb/20_source_mapping.yml'
+  :description: 'disabled _source is not supported'
+-
+  :file: 'logsdb/20_source_mapping.yml'
+  :description: 'include/exclude is not supported with synthetic _source'
+-
+  :file: 'tsdb/20_mapping.yml'
+  :description: 'disabled source is not supported'
+-
+  :file: 'tsdb/20_mapping.yml'
+  :description: 'source include/exclude'
+-
+  :file: 'cluster.stats/40_source_modes.yml'
+  :description: 'test source modes'
+-
+  :file: 'search/520_fetch_fields.yml'
+  :description: 'fetch _seq_no via fields'
+-
+  :file: 'indices.recovery/20_synthetic_source.yml'
+  :description: 'test recovery empty index with use_synthetic_source'
+-
+  :file: 'indices.create/10_basic.yml'
+  :description: 'Create lookup index'
+-
+  :file: 'indices.create/10_basic.yml'
+  :description: 'Create lookup index with one shard'
+-
+  :file: 'nodes.stats/11_indices_metrics.yml'
+  :description: 'indices mappings exact count test for indices level'

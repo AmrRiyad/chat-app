@@ -1,0 +1,241 @@
+# Response from Elasticsearch includes the ca.crt, so length doesn't match.
+-
+  :file:        'ssl/10_basic.yml'
+  :description: 'Test get SSL certificates'
+
+# TODO: Failing due to processing of regexp in test
+-
+  :file: 'ml/explain_data_frame_analytics.yml'
+  :description: 'Test non-empty data frame given body'
+
+-
+  :file: 'analytics/usage.yml'
+  :description: 'Usage stats on analytics indices'
+
+# TODO https://github.com/elastic/elasticsearch-ruby/issues/1269
+-
+  :file: 'searchable_snapshots/10_usage.yml'
+  :description: 'Tests searchable snapshots usage stats with full_copy and shared_cache indices'
+
+# TODO https://github.com/elastic/elasticsearch-ruby/issues/1291
+-
+  :file: 'service_accounts/10_basic.yml'
+  :description: 'Test service account tokens'
+
+# Migrated to manual integration test:
+-
+  :file: 'api_key/10_basic.yml'
+  :description: 'Test get api key'
+-
+  :file: 'api_key/11_invalidation.yml'
+  :description: '*'
+-
+  :file: 'api_key/20_query.yml'
+  :description: '*'
+-
+  :file: 'api_key/30_update.yml'
+  :description: '*'
+-
+  :file: 'api_key/40_view_role_descriptors.yml'
+  :description: '*'
+-
+  :file: 'api_key/50_cross_cluster.yml'
+  :description: '*'
+
+-
+  :file: 'health/10_usage.yml'
+  :description: 'Usage stats on the health API'
+
+-
+  :file: 'snapshot/10_basic.yml'
+  :description: 'Create a source only snapshot and then restore it'
+-
+  :file: 'snapshot/10_basic.yml'
+  :description: 'Failed to snapshot indices with synthetic source'
+-
+  :file: 'token/10_basic.yml'
+  :description: "Test invalidate user's tokens"
+-
+  :file: 'token/10_basic.yml'
+  :description: "Test invalidate realm's tokens"
+
+ # Skipping due to testing conditions:
+-
+  :file: 'ml/3rd_party_deployment.yml'
+  :description: 'Test put model alias on pytorch model'
+-
+  :file: 'ml/3rd_party_deployment.yml'
+  :description: 'Test update model alias on pytorch model to undeployed model'
+-
+  :file: 'ml/3rd_party_deployment.yml'
+  :description: 'Test cannot start 2 deployments with the same Id'
+-
+  :file: 'ml/3rd_party_deployment.yml'
+  :description: 'Test cannot create model with a deployment Id'
+-
+  :file: 'ml/3rd_party_deployment.yml'
+  :description: 'Test clear deployment cache'
+- # Wrong error matching
+  :file: 'ml/3rd_party_deployment.yml'
+  :description: 'Test getting and putting Fill Mask with two mask tokens, as well as exceptions caused by requests with the wrong token'
+
+-
+  :file: 'searchable_snapshots/20_synthetic_source.yml'
+  :description: 'Tests searchable snapshots usage stats'
+-
+  :file: 'snapshot/20_operator_privileges_disabled.yml'
+  :description: '*'
+
+-
+  :file: 'token/11_invalidation.yml'
+  :description: 'Test invalidate access token return statuses'
+-
+  :file: 'token/11_invalidation.yml'
+  :description: 'Test invalidate refresh token return statuses'
+
+# Implemented manually:
+-
+  :file: 'ml/get_memory_stats.yml'
+  :description: '*'
+
+-
+  :file: 'eql/30_async_missing_events.yml'
+  :description: 'Execute async EQL with missing events'
+-
+  :file: 'api_key/60_admin_user.yml'
+  :description: 'Test get api key (with role descriptors + metadata)'
+-
+  :file: 'api_key/60_admin_user.yml'
+  :description: 'Test query api keys'
+
+-
+  :file: 'spatial/70_script_doc_values.yml'
+  :description: '*'
+-
+  :file: 'esql/60_usage.yml'
+  :description: 'Basic ESQL usage output (telemetry)'
+-
+  :file: 'users/40_query.yml'
+  :description: 'Test query user'
+-
+  :file: 'api_key/21_query_with_aggs.yml'
+  :description: 'Test composite aggs api key'
+
+# Issue: key_as_string should not be parsed to date:
+-
+  :file: 'analytics/empty_field_metric.yml'
+  :description: 'Rate test'
+# Migrated to yaml tests in elastic/elasticsearch-clients-tests
+-
+  :file: 'roles/10_basic.yml'
+  :description: '*'
+-
+  :file: 'roles/50_remote_only.yml'
+  :description: '*'
+-
+  :file: 'entsearch/connector/secret/10_connector_secret_post.yml'
+  :description: '*'
+-
+  :file: 'entsearch/connector/secret/30_connector_secret_get.yml'
+  :description: '*'
+-
+  :file: 'entsearch/connector/secret/40_connector_secret_delete.yml'
+  :description: '*'
+-
+  :file: 'entsearch/search/20_search_application_put.yml'
+  :description: '*'
+-
+  :file: 'entsearch/search/30_search_application_get.yml'
+  :description: '*'
+-
+  :file: 'entsearch/search/40_search_application_delete.yml'
+  :description: '*'
+-
+  :file: 'entsearch/search/50_search_application_list.yml'
+  :description: '*'
+-
+  :file: 'entsearch/search/56_search_application_search_with_apikey.yml'
+  :description: '*'
+-
+  :file: 'entsearch/connector/secret/20_connector_secret_put.yml'
+  :description: '*'
+-
+  :file: 'entsearch/connector/sync_job/50_connector_sync_job_get.yml'
+  :description: '*'
+-
+  :file: 'entsearch/connector/sync_job/70_connector_sync_job_update_stats.yml'
+  :description: '*'
+-
+  :file: 'entsearch/analytics/40_behavioral_analytics_event_post.yml'
+  :description: '*'
+-
+  :file: 'entsearch/connector/20_connector_list.yml'
+  :description: '*'
+-
+  :file: 'entsearch/rules/5_query_rulesets_before_setup.yml'
+  :description: '*'
+-
+  :file: 'entsearch/rules/10_query_ruleset_put.yml'
+  :description: '*'
+-
+  :file: 'entsearch/rules/20_query_ruleset_list.yml'
+  :description: '*'
+-
+  :file: 'entsearch/rules/50_query_rule_put.yml'
+  :description: '*'
+-
+  :file: 'entsearch/rules/10_query_ruleset_put.yml'
+  :description: '*'
+-
+  :file: 'entsearch/rules/40_rule_query_search.yml'
+  :description: '*'
+-
+  :file: 'entsearch/rules/60_query_rule_delete.yml'
+  :description: '*'
+-
+  :file: 'entsearch/rules/30_query_ruleset_delete.yml'
+  :description: '*'
+-
+  :file: 'roles/60_bulk_roles.yml'
+  :description: '*'
+-
+  :file: 'entsearch/analytics/30_behavioral_analytics_delete.yml'
+  :description: '*'
+-
+  :file: 'entsearch/analytics/40_behavioral_analytics_event_post.yml'
+  :description: '*'
+-
+  :file: 'entsearch/20_usage.yml'
+  :description: '*'
+# TODO: Update test runnner. Error is ok but Regexp shenanigans
+-
+  :file: 'eql/60_no_exact.yml'
+  :description: 'Case insensitive match on text field'
+-
+  :file: 'esql/180_match_operator.yml'
+  :description: '*'
+-
+  :file: 'esql/60_usage.yml'
+  :description: 'Basic ESQL usage output (telemetry) non-snapshot version'
+-
+  :file: 'wildcard/30_ignore_above_synthetic_source.yml'
+  :description: 'wildcard field type ignore_above'
+-
+  :file: 'wildcard/20_ignore_above_stored_source.yml'
+  :description: 'wildcard field type ignore_above'
+-
+  :file: 'esql/150_lookup.yml'
+  :description: '*'
+# TODO: once migrate is available in spec
+-
+  :file: 'migrate/10_reindex.yml'
+  :description: '*'
+-
+  :file: 'migrate/20_reindex_status.yml'
+  :description: '*'
+-
+  :file: 'migrate/30_create_from.yml'
+  :description: '*'
+-
+  :file: 'esql/60_usage.yml'
+  :description: 'Basic ESQL usage output (telemetry) snapshot version'

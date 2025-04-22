@@ -41,6 +41,9 @@ gem "thruster", require: false
 # gem "image_processing", "~> 1.2"
 
 gem "auto_increment"
+gem "elasticsearch"
+gem "elasticsearch-rails"
+gem "elasticsearch-model"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -53,6 +56,8 @@ group :development, :test do
   gem "rubocop-rails-omakase", require: false
 
   gem "factory_bot_rails"
+
+  gem "faker"
 
   gem "rspec-rails", "~> 6.0"
 end
