@@ -1,11 +1,12 @@
 services:
   # Rails Service
-  web:
+  rails:
     build: .
     environment:
       - RAILS_ENV=development
       - RAILS_MASTER_KEY
       - MYSQL_ROOT_PASSWORD=12082002
+      - REDIS_URL=redis://redis:6379
     restart: always
     ports:
       - "3000:80"
@@ -21,6 +22,8 @@ services:
       db:
         condition: service_healthy
       elasticsearch:
+        condition: service_healthy
+      redis:
         condition: service_healthy
 
   # Database Service
@@ -61,6 +64,24 @@ services:
       timeout: 10s
       retries: 5
 
+  # Redis Service
+  redis:
+    image: redis:latest
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    depends_on:
+      db:
+        condition: service_healthy
+
 volumes:
   mysql_data:
   elasticsearch_data:
+  redis_data:

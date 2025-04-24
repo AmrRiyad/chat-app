@@ -16,6 +16,8 @@ class ChatsController < ApplicationController
     else
       @chat = @application.chats.new(chat_params)
       if @chat.save
+        $redis.incr("application:#{@application.token}:chats_count")
+        $redis.set("application:#{@application.token}:chat:#{@chat.number}:messages_count", @chat.message_count, nx: true)
         render json: @chat, status: :created
       else
         render json: @chat.errors, status: :unprocessable_entity
@@ -24,15 +26,24 @@ class ChatsController < ApplicationController
   end
 
   def show
-    @application = Application.find_by(token: params[:application_token])
-    if @application.nil?
-      render json: { error: "Application not found" }, status: :not_found
+    redis_key = "application:#{params[:application_token]}:chat:#{params[:number]}"
+    cached_data = $redis.get(redis_key)
+
+    if cached_data
+      chat_data = JSON.parse(cached_data)
+      render json: { chat: chat_data, from_cache: true }
     else
-      @chat = Chat.find_by(number: params[:number], application_id: @application.id)
-      if @chat.nil?
-        render json: { error: "Chat not found" }, status: :not_found
+      @application = Application.find_by(token: params[:application_token])
+      if @application.nil?
+        render json: { error: "Application not found" }, status: :not_found
       else
-        render json: @chat
+        @chat = Chat.find_by(number: params[:number], application_id: @application.id)
+        if @chat.nil?
+          render json: { error: "Chat not found" }, status: :not_found
+        else
+          $redis.set(redis_key, @chat.to_json, ex: 10)
+          render json: { chat: @chat, from_cache: false }
+        end
       end
     end
   end
