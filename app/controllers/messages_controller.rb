@@ -46,7 +46,7 @@ class MessagesController < ApplicationController
   end
 
   def show
-    redis_key = "application:#{params[:application_token]}:chat:#{params[:chat_number]}:message:#{params[:message_number]}"
+    redis_key = "application:#{params[:application_token]}:chat:#{params[:chat_number]}:message:#{params[:number]}"
     cached_data = $redis.get(redis_key)
 
     if cached_data
@@ -61,7 +61,7 @@ class MessagesController < ApplicationController
         if @chat.nil?
           render json: { error: "Chat not found" }, status: :not_found
         else
-          @message = Message.find_by(number: params[:message_number], chat_id: @chat.id)
+          @message = Message.find_by(number: params[:number], chat_id: @chat.id)
           if @message.nil?
             render json: { error: "Message not found" }, status: :not_found
           else
