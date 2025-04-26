@@ -34,13 +34,13 @@ class MessagesController < ApplicationController
       if @chat.nil?
         render json: { error: "Chat not found" }, status: :not_found
       else
-        @message = @chat.messages.new(message_params)
-        if @message.save
-          $redis.incr("application:#{@application.token}:chat:#{@chat.number}:messages_count")
-          render json: @message, status: :created
-        else
-          render json: @message.errors, status: :unprocessable_entity
+        redis_key = "application:#{@application.token}:chat:#{@chat.number}:messages_count"
+        if $redis.get(redis_key).nil?
+          $redis.set(redis_key, @chat.messages_count, nx: true)
         end
+        message_number = $redis.incr(redis_key)
+        MessageCreationJob.perform_async(@application.token, @chat.number, message_params[:content], message_number)
+        render json: { message: "Message created" }, status: :created
       end
     end
   end

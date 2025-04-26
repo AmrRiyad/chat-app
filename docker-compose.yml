@@ -81,6 +81,26 @@ services:
       db:
         condition: service_healthy
 
+  # Sidekiq Service
+  sidekiq:
+    build: .
+    command: "bundle exec sidekiq"
+    restart: always
+    volumes:
+      - ./:/rails
+    environment:
+      - RAILS_ENV=development
+      - REDIS_URL=redis://redis:6379
+      - ELASTICSEARCH_URL=http://elasticsearch:9200
+      - Databaseh_host=db
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      elasticsearch:
+        condition: service_healthy
+
 volumes:
   mysql_data:
   elasticsearch_data:

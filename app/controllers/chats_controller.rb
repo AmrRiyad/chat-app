@@ -14,14 +14,13 @@ class ChatsController < ApplicationController
     if @application.nil?
       render json: { error: "Application not found" }, status: :not_found
     else
-      @chat = @application.chats.new(chat_params)
-      if @chat.save
-        $redis.incr("application:#{@application.token}:chats_count")
-        $redis.set("application:#{@application.token}:chat:#{@chat.number}:messages_count", @chat.message_count, nx: true)
-        render json: @chat, status: :created
-      else
-        render json: @chat.errors, status: :unprocessable_entity
+      redis_key = "application:#{@application.token}:chats_count"
+      if $redis.get(redis_key).nil?
+        $redis.set(redis_key, @application.chats_count, nx: true)
       end
+      chat_count = $redis.incr(redis_key)
+      ChatCreationJob.perform_async(@application.token, chat_params[:name], chat_count)
+      render json: { message: "Chat creation job enqueued" }, status: :accepted
     end
   end
 

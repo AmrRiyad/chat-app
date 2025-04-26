@@ -5,7 +5,7 @@ Elasticsearch::Model.client = Elasticsearch::Client.new(
 Rails.application.config.after_initialize do
   begin
     # Create Elasticsearch index for the Message model if it doesn't exist
-    if Message.__elasticsearch__.index_exists
+    if !Message.__elasticsearch__.index_exists?
       Message.__elasticsearch__.create_index! force: true
       Rails.logger.info "Elasticsearch index for Message created successfully."
 
