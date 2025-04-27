@@ -69,7 +69,7 @@ services:
     image: redis:latest
     restart: always
     ports:
-      - "6379:6379"
+      - "6380:6379"
     volumes:
       - redis_data:/data
     healthcheck:
@@ -102,19 +102,19 @@ services:
         condition: service_healthy
 
   # Go Service
-  go-service:
-    build:
-      context: ./go
-      dockerfile: Dockerfile
-    command: "go run main.go"
-    restart: always
-    environment:
-      - REDIS_URL: redis://redis:6379
-    ports:
-      - "8080:8080"
-    depends_on:
-      - redis:
-          condition: service_healthy
+  # go-service:
+  #   build:
+  #     context: ./go
+  #     dockerfile: Dockerfile
+  #   command: "go run main.go"
+  #   restart: always
+  #   environment:
+  #     - REDIS_URL=redis://redis:6379
+  #   ports:
+  #     - "8080:8080"
+  #   depends_on:
+  #     redis:
+  #       condition: service_healthy
 
 volumes:
   mysql_data:
